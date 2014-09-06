@@ -1,4 +1,4 @@
-Extended-Logging
+Extended Logging
 ================
 
-Extended log library for sourcemod plugins
+Extended logging library for sourcemod plugins
