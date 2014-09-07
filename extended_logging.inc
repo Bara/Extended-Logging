@@ -3,6 +3,8 @@
 #endif
 #define _extended_log_included
 
+#define ExLo_VERSION "1.0.0"
+
 enum ELOG_LEVEL
 {
 	DEFAULT = 0,
