@@ -1,6 +1,8 @@
 Extended Logging
 ============
 
+[![Alt text](https://travis-ci.org/Bara20/Extended-Logging.svg?branch=master)](https://travis-ci.org/Bara20/Extended-Logging)
+
 is a small extension to the normal logging include. The log entries are sorted categorically. This plugin created by default (provided that such level is in use) the level folder (trace, debug, info, warn and error), if no path name is specified. Otherwise it would look like this 'addons/sourcemod/logs/path'. You can define the file name self and insert in the file name a date (optimal).
 
 ### Functions:
