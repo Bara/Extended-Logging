@@ -22,7 +22,7 @@ new String:g_sELogLevel[6][32] = {
 	"info",
 	"warn",
 	"error"
-}
+};
 
 /**
  * Logs a message to any file.
