@@ -3,7 +3,7 @@
 #endif
 #define _extended_log_included
 
-#define ExLo_VERSION "1.0.0"
+#define ExLo_VERSION "2.0.0"
 
 enum ELOG_LEVEL
 {
@@ -13,9 +13,9 @@ enum ELOG_LEVEL
 	INFO,
 	WARN,
 	ERROR
-}
+};
 
-new String:g_sELogLevel[6][32] = {
+char g_sELogLevel[6][32] = {
 	"default",
 	"trace",
 	"debug",
@@ -35,9 +35,9 @@ new String:g_sELogLevel[6][32] = {
  * @noreturn
  * @error				File could not be opened/written.
  */
-stock Log_Default(const String:path[] = "", const String:file[] = "file", const String:date[] = "",  const String:format[], any:...)
+stock void Log_Default(const char[] path = "", const char[] file = "file", const char[] date = "",  const char[] format, any ...)
 {
-	decl String:sBuffer[1024];
+	char sBuffer[1024];
 	VFormat(sBuffer, sizeof(sBuffer), format, 5);
 	Log_File(path, file, date, DEFAULT, sBuffer);
 }
@@ -53,9 +53,9 @@ stock Log_Default(const String:path[] = "", const String:file[] = "file", const 
  * @noreturn
  * @error				File could not be opened/written.
  */
-stock Log_Trace(const String:path[] = "", const String:file[] = "file", const String:date[] = "",  const String:format[], any:...)
+stock void Log_Trace(const char[] path = "", const char[] file = "file", const char[] date = "",  const char[] format, any ...)
 {
-	decl String:sBuffer[1024];
+	char sBuffer[1024];
 	VFormat(sBuffer, sizeof(sBuffer), format, 5);
 	Log_File(path, file, date, TRACE, sBuffer);
 }
@@ -71,9 +71,9 @@ stock Log_Trace(const String:path[] = "", const String:file[] = "file", const St
  * @noreturn
  * @error				File could not be opened/written.
  */
-stock Log_Debug(const String:path[] = "", const String:file[] = "file", const String:date[] = "",  const String:format[], any:...)
+stock void Log_Debug(const char[] path = "", const char[] file = "file", const char[] date = "",  const char[] format, any ...)
 {
-	decl String:sBuffer[1024];
+	char sBuffer[1024];
 	VFormat(sBuffer, sizeof(sBuffer), format, 5);
 	Log_File(path, file, date, DEBUG, sBuffer);
 }
@@ -89,9 +89,9 @@ stock Log_Debug(const String:path[] = "", const String:file[] = "file", const St
  * @noreturn
  * @error				File could not be opened/written.
  */
-stock Log_Info(const String:path[] = "", const String:file[] = "file", const String:date[] = "",  const String:format[], any:...)
+stock void Log_Info(const char[] path = "", const char[] file = "file", const char[] date = "",  const char[] format, any ...)
 {
-	decl String:sBuffer[1024];
+	char sBuffer[1024];
 	VFormat(sBuffer, sizeof(sBuffer), format, 5);
 	Log_File(path, file, date, INFO, sBuffer);
 }
@@ -107,9 +107,9 @@ stock Log_Info(const String:path[] = "", const String:file[] = "file", const Str
  * @noreturn
  * @error				File could not be opened/written.
  */
-stock Log_Warn(const String:path[] = "", const String:file[] = "file", const String:date[] = "",  const String:format[], any:...)
+stock void Log_Warn(const char[] path = "", const char[] file = "file", const char[] date = "",  const char[] format, any ...)
 {
-	decl String:sBuffer[1024];
+	char sBuffer[1024];
 	VFormat(sBuffer, sizeof(sBuffer), format, 5);
 	Log_File(path, file, date, WARN, sBuffer);
 }
@@ -125,9 +125,9 @@ stock Log_Warn(const String:path[] = "", const String:file[] = "file", const Str
  * @noreturn
  * @error				File could not be opened/written.
  */
-stock Log_Error(const String:path[] = "", const String:file[] = "file", const String:date[] = "",  const String:format[], any:...)
+stock void Log_Error(const char[] path = "", const char[] file = "file", const char[] date = "",  const char[] format, any ...)
 {
-	decl String:sBuffer[1024];
+	char sBuffer[1024];
 	VFormat(sBuffer, sizeof(sBuffer), format, 5);
 	Log_File(path, file, date, ERROR, sBuffer);
 }
@@ -146,12 +146,12 @@ stock Log_Error(const String:path[] = "", const String:file[] = "file", const St
  * @noreturn
  * @error				File could not be opened/written.
  */
-stock Log_File(const String:path[] = "", const String:file[] = "file", const String:date[] = "", ELOG_LEVEL:level = INFO, const String:format[], any:...)
+stock void Log_File(const char[] path = "", const char[] file = "file", const char[] date = "", ELOG_LEVEL level = INFO, const char[] format, any ...)
 {
-	decl String:sPath[PLATFORM_MAX_PATH + 1];
-	decl String:sLevelPath[PLATFORM_MAX_PATH + 1];
-	decl String:sFile[PLATFORM_MAX_PATH + 1];
-	decl String:sBuffer[1024];
+	char sPath[PLATFORM_MAX_PATH + 1];
+	char sLevelPath[PLATFORM_MAX_PATH + 1];
+	char sFile[PLATFORM_MAX_PATH + 1];
+	char sBuffer[1024];
 
 	if(StrEqual(path, "", false))
 	{

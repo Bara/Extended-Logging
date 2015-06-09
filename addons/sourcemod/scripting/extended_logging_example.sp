@@ -1,29 +1,32 @@
+#pragma semicolon 1
+#pragma newdecls required
+
 #include <sourcemod>
 #include <extended_logging>
 
-public Plugin:myinfo =
+public Plugin myinfo =
 {
 	name = "Example plugin for extended logging",
 	author = "Bara",
 	description = "Example plugin for extended logging",
-	version = "1.0",
+	version = ExLo_VERSION,
 	url = "www.bara.in"
 }
 
-public OnPluginStart()
+public void OnPluginStart()
 {
 	RegConsoleCmd("sm_logfile", Command_LogFile);
 }
 
-public Action:Command_LogFile(client, args)
+public Action Command_LogFile(int client, int args)
 {
-	decl String:sPath[PLATFORM_MAX_PATH + 1];
+	char sPath[PLATFORM_MAX_PATH + 1];
 	Format(sPath, sizeof(sPath), "example");
 
-	decl String:sFile[PLATFORM_MAX_PATH + 1];
+	char sFile[PLATFORM_MAX_PATH + 1];
 	Format(sFile, sizeof(sFile), "name_example");
 
-	decl String:sDate[64];
+	char sDate[64];
 	FormatTime(sDate, sizeof(sDate), "%d-%m-%y");
 
 	// with sDate
